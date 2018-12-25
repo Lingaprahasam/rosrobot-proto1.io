@@ -48,6 +48,23 @@ parts:
     catkin-packages:
       - robot_setup_tf      
     after: [ros-base-armhf]
+
+    stage:
+      - -usr/lib/arm-linux-gnueabihf/libasan.so.2.0.0
+      - -usr/lib/arm-linux-gnueabihf/libatomic.so.1.1.0
+      - -usr/lib/arm-linux-gnueabihf/libgomp.so.1.0.0
+      - -usr/lib/arm-linux-gnueabihf/libubsan.so.0.0.0
+      - -usr/lib/gcc/arm-linux-gnueabihf/5/crtbegin.o
+      - -usr/lib/gcc/arm-linux-gnueabihf/5/crtbeginS.o
+      - -usr/lib/gcc/arm-linux-gnueabihf/5/crtbeginT.o
+      - -usr/lib/gcc/arm-linux-gnueabihf/5/crtend.o
+      - -usr/lib/gcc/arm-linux-gnueabihf/5/crtendS.o
+      - -usr/lib/gcc/arm-linux-gnueabihf/5/crtfastmath.o
+      - -usr/lib/gcc/arm-linux-gnueabihf/5/libasan.a
+      - -usr/lib/gcc/arm-linux-gnueabihf/5/libasan_preinit.o
+      - -usr/lib/gcc/arm-linux-gnueabihf/5/libstdc++.a
+      - -usr/lib/gcc/arm-linux-gnueabihf/5/libubsan.a
+      - -usr/share/doc/linux-libc-dev/changelog.Debian.gz
   
   run-system:
     plugin: dump
