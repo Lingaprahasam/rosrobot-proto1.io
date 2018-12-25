@@ -2,24 +2,11 @@
 
 case $SNAP_ARCH in
 
-amd64)
-
-	TRIPLET="x86_64-linux-gnu"
-
-	;;
-
 armhf)
 
 	TRIPLET="arm-linux-gnueabihf"
 
 	;;
-
-arm64)
-
-	TRIPLET="aarch64-linux-gnu"
-
-	;;
-
 *)
 
 	TRIPLET="$SNAP_ARCH-linux-gnu"
