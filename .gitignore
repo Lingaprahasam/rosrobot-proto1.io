@@ -3,23 +3,26 @@
 # =====================
 
 # rosrobot-proto1
-/rosrobot-proto1/build
-/rosrobot-proto1/devel
-/rosrobot-proto1/devel_isolated
-/rosrobot-proto1/el
-/rosrobot-proto1/el_isolated
-/rosrobot-proto1/logs
-/rosrobot-proto1/.catkin_tools
-/rosrobot-proto1/.vscode
-/rosrobot-proto1/.catkin_workspace
-/rosrobot-proto1/src/CMakeLists.txt
+/build
+/devel
+/devel_isolated
+/el
+/el_isolated
+/logs
+/.catkin_tools
+/.vscode
+/.catkin_workspace
+/src/CMakeLists.txt
 
 # =====================
 # Snapcraft Work Space
 # =====================
+# ros-base-armhf
+/ros-base-armhf.tar.bz2
+
 # rosrobot-proto1
-/rosrobot-proto1/parts
-/rosrobot-proto1/prime
-/rosrobot-proto1/ros-base_1.0_amd64.snap
-/rosrobot-proto1/snap/.snapcraft
-/rosrobot-proto1/stage/
+/parts
+/prime
+/ros-base_1.0_amd64.snap
+/snap/.snapcraft
+/stage/
