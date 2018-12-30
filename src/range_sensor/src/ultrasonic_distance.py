@@ -66,7 +66,6 @@ def distance():
  
         return distance
     else:
-        print "Fault in sensor Measurement"
         return 0
  
 if __name__ == '__main__':
