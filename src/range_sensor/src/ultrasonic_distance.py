@@ -35,8 +35,8 @@ def distance_basic():
     time.sleep(0.00001)
     GPIO.output(GPIO_TRIGGER, True)
  
-    StartTime = time.time()
-    StopTime = time.time()
+    # StartTime = time.time()
+    # StopTime = time.time()
  
     # save StartTime
     while GPIO.input(GPIO_ECHO) == 0:
@@ -111,7 +111,9 @@ if __name__ == '__main__':
     # init_sensor()
 
     # Start Measurement
-    MeasureDistance()
+    # MeasureDistance()
+    dist = distance_basic()
+    print ("Measured Distance = %.1f cm" % dist)
 
     # GPIO pin Clean up
     GPIO.cleanup()
