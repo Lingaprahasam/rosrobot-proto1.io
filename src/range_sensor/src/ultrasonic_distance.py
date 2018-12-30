@@ -67,10 +67,8 @@ def distance():
         return distance
     else:
         return 0
- 
-if __name__ == '__main__':
-    # Initialize sensor
-    init_sensor()
+
+def MeasureDistance():
     count = 0
     
     # Measure distance every 1 second time
@@ -99,7 +97,13 @@ if __name__ == '__main__':
 
     finally:
         GPIO.cleanup()
+ 
+if __name__ == '__main__':
+    # Initialize sensor
+    init_sensor()
+    MeasureDistance()
 
+    # GPIO pin Clean up
     GPIO.cleanup()
 
     
