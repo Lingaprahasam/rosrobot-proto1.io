@@ -3,7 +3,7 @@ import RPi.GPIO as GPIO
 import time
 
 # Speed of sound at sea level 343m/s
-SpeedOfSound_sealevel = 34300
+# SpeedOfSound_sealevel = 34300
 
 #GPIO Mode (BOARD / BCM)
 GPIO.setmode(GPIO.BOARD)
@@ -43,7 +43,7 @@ def distance():
     TimeElapsed = StopTime - StartTime
     # multiply with the sonic speed (34300 cm/s)
     # and divide by 2, because there and back
-    distance = (TimeElapsed * SpeedOfSound_sealevel) / 2
+    distance = (TimeElapsed * 34300) / 2
  
     return distance
  
