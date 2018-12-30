@@ -16,6 +16,9 @@ GPIO_ECHO = 15
 GPIO.setup(GPIO_TRIGGER, GPIO.OUT)
 GPIO.setup(GPIO_ECHO, GPIO.IN)
 
+StartTime = time.time()
+StopTime = time.time() 
+
 lastState = False
 sensorerror = False
 
@@ -37,10 +40,7 @@ def distance():
     GPIO.output(GPIO_TRIGGER, False)
  
     # print GPIO.input(GPIO_TRIGGER)
-
-    StartTime = time.time()
-    StopTime = time.time()
- 
+    
     # save StartTime
     while GPIO.input(GPIO_ECHO) == 0:
         if lastState != 0:
@@ -66,6 +66,7 @@ def distance():
         TimeElapsed = StopTime - StartTime
         # multiply with the sonic speed (34300 cm/s)
         # and divide by 2, because there and back
+        print TimeElapsed
         distance = (TimeElapsed * 34300) / 2
  
         return distance
