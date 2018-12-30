@@ -49,7 +49,7 @@ def distance():
  
 if __name__ == '__main__':
     # Initialize sensor
-    init_sensor()
+    # init_sensor()
 
     # Measure distance every 1 second time
     try:
