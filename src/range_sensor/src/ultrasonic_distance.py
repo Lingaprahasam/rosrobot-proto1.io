@@ -36,6 +36,8 @@ def distance():
     time.sleep(0.00001)
     GPIO.output(GPIO_TRIGGER, False)
  
+    print GPIO.input(GPIO_TRIGGER)
+
     StartTime = time.time()
     StopTime = time.time()
  
