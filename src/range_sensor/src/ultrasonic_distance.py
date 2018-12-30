@@ -5,16 +5,17 @@ import time
 # Speed of sound at sea level 343m/s
 # SpeedOfSound_sealevel = 34300
 
+#GPIO Mode (BOARD / BCM)
+GPIO.setmode(GPIO.BOARD)
+
 #set GPIO Pins
 GPIO_TRIGGER = 11
 GPIO_ECHO = 12
 
-def init_sensor():
-    GPIO.cleanup()
+lastState = False
+sensorerror = False
 
-    #GPIO Mode (BOARD / BCM)
-    GPIO.setmode(GPIO.BOARD)
-
+def init_sensor():    
     #set GPIO direction (IN / OUT)
     GPIO.setup(GPIO_TRIGGER, GPIO.OUT)
     GPIO.setup(GPIO_ECHO, GPIO.IN)
@@ -36,24 +37,40 @@ def distance():
  
     # save StartTime
     while GPIO.input(GPIO_ECHO) == 0:
-        StartTime = time.time()
+        if lastState != 0:
+            lastState = False
+            sensorerror = False
+            StartTime = time.time()
+        else:
+            sensorerror = True
+            break
  
     # save time of arrival
     while GPIO.input(GPIO_ECHO) == 1:
-        StopTime = time.time()
+        if lastState != 1:            
+            lastState = True
+            sensorerror = False
+            StopTime = time.time()
+        else:
+            sensorerror = True
+            break
  
-    # time difference between start and arrival
-    TimeElapsed = StopTime - StartTime
-    # multiply with the sonic speed (34300 cm/s)
-    # and divide by 2, because there and back
-    distance = (TimeElapsed * 34300) / 2
+    if sensorerror == False:
+        # time difference between start and arrival
+        TimeElapsed = StopTime - StartTime
+        # multiply with the sonic speed (34300 cm/s)
+        # and divide by 2, because there and back
+        distance = (TimeElapsed * 34300) / 2
  
-    return distance
+        return distance
+    else:
+        return 0
  
 if __name__ == '__main__':
     # Initialize sensor
     init_sensor()
 
+    
     # Measure distance every 1 second time
     try:
         while True:
