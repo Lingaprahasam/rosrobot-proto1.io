@@ -16,11 +16,11 @@ GPIO_ECHO = 15
 GPIO.setup(GPIO_TRIGGER, GPIO.OUT)
 GPIO.setup(GPIO_ECHO, GPIO.IN)
 
-StartTime = time.time()
-StopTime = time.time() 
+# StartTime = time.time()
+# StopTime = time.time() 
 
-lastState = False
-sensorerror = False
+# lastState = False
+# sensorerror = False
 
 def init_sensor():
     #
@@ -28,38 +28,37 @@ def init_sensor():
     time.sleep(2)
 
 def distance():
-    global lastState
-    global sensorerror
+    # global lastState
+    # global sensorerror
     # set Trigger to HIGH
     GPIO.output(GPIO_TRIGGER, True)
     
-    # print GPIO.input(GPIO_TRIGGER)   
-
     # set Trigger after 0.01ms to LOW    
     time.sleep(0.00001)
     GPIO.output(GPIO_TRIGGER, False)
  
-    # print GPIO.input(GPIO_TRIGGER)
-    
+    StartTime = time.time()
+    StopTime = time.time() 
+
     # save StartTime
     while GPIO.input(GPIO_ECHO) == 0:
-        if lastState != 0:
-            lastState = False
+        # if lastState != 0:
+            # lastState = False
             # sensorerror = False
             StartTime = time.time()
-        else:
+        # else:
             # sensorerror = True
-            break
+            # break
  
     # save time of arrival
     while GPIO.input(GPIO_ECHO) == 1:
-        if lastState != 1:            
-            lastState = True
+        # if lastState != 1:            
+            # lastState = True
             # sensorerror = False
             StopTime = time.time()
-        else:
+        # else:
             # sensorerror = True
-            break
+            # break
  
     # if sensorerror == False:
         # time difference between start and arrival
@@ -105,10 +104,8 @@ def MeasureDistance():
  
 if __name__ == '__main__':
     # Initialize sensor
-    init_sensor()
+    # init_sensor()
     MeasureDistance()
 
     # GPIO pin Clean up
     GPIO.cleanup()
-
-    
