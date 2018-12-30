@@ -54,30 +54,27 @@ def distance_basic():
  
     return distance
 
-def distance():
+def distance_advanced():
     global SpeedOfSound_sealevel
     global StartTime
     global StopTime
     global lastState
 
-    # set Trigger to HIGH
-    GPIO.output(GPIO_TRIGGER, True)
+    if GPIO.input(GPIO_ECHO) == 0 or lastState == True:
+        # set Trigger to HIGH
+        GPIO.output(GPIO_TRIGGER, False)
  
-    # set Trigger after 0.01ms to LOW
-    time.sleep(0.00001)
-    GPIO.output(GPIO_TRIGGER, False)
- 
-    # save StartTime
-    while GPIO.input(GPIO_ECHO) == 0:
-        if lastState != 0:
-            lastState = False        
-            StartTime = time.time()        
+        # set Trigger after 0.01ms to LOW
+        time.sleep(0.00001)
+        GPIO.output(GPIO_TRIGGER, True)
+
+        lastState = False
+        StartTime = time.time()
  
     # save time of arrival
     while GPIO.input(GPIO_ECHO) == 1:
-        if lastState != 1:
-            lastState = True
-            StopTime = time.time()
+        lastState = True
+        StopTime = time.time()           
  
     # time difference between start and arrival
     TimeElapsed = StopTime - StartTime
@@ -87,23 +84,13 @@ def distance():
  
     return distance
 
-def MeasureDistance():
-    count = 0
-    
+def MeasureDistance():    
     # Measure distance every 1 second time
     try:
         while True:
-            dist = distance_basic()
-            if dist == 0:
-                count += 1
-            else:
-                count = 0
-            
-            if count < 5:
-                print ("Measured Distance = %.1f cm" % dist)
-            else:
-                print ("Fault on sensor measurement")                
-                break
+            # dist = distance_basic()
+            dist = distance_advanced()
+            print ("Measured Distance = %.1f cm" % dist)
 
             time.sleep(1)
  
