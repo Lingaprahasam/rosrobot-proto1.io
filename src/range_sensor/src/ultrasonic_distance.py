@@ -47,7 +47,8 @@ def distance_basic():
         StopTime = time.time()
  
     # time difference between start and arrival
-    TimeElapsed = StopTime - StartTime
+    TimeElapsed = round((StopTime - StartTime),2)
+    print (TimeElapsed)
     # multiply with the sonic speed (34300 cm/s)
     # and divide by 2, because there and back
     distance = (TimeElapsed * 34300) / 2
@@ -89,8 +90,8 @@ def MeasureDistance():
     # Measure distance every 1 second time
     try:
         while True:
-            # dist = distance_basic()
-            dist = distance_advanced()
+            dist = distance_basic()
+            # dist = distance_advanced()
             print ("Measured Distance = %.1f cm" % dist)
 
             time.sleep(1)
