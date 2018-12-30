@@ -86,6 +86,7 @@ if __name__ == '__main__':
                 print ("Measured Distance = %.1f cm" % dist)
             else:
                 print ("Fault on sensor measurement")
+                GPIO.cleanup()
                 break
 
             time.sleep(1)
