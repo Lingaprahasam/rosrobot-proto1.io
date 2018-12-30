@@ -29,11 +29,11 @@ def init_sensor():
 
 def distance_basic():
     # set Trigger to HIGH
-    GPIO.output(GPIO_TRIGGER, True)
+    GPIO.output(GPIO_TRIGGER, False)
  
     # set Trigger after 0.01ms to LOW
     time.sleep(0.00001)
-    GPIO.output(GPIO_TRIGGER, False)
+    GPIO.output(GPIO_TRIGGER, True)
  
     StartTime = time.time()
     StopTime = time.time()
