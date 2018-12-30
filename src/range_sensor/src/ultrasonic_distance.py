@@ -3,7 +3,7 @@ import RPi.GPIO as GPIO
 import time
 
 # Speed of sound at sea level 343m/s
-# SpeedOfSound_sealevel = 34300
+SpeedOfSound_sealevel = 34300
 
 #GPIO Mode (BOARD / BCM)
 GPIO.setmode(GPIO.BOARD)
@@ -16,61 +16,93 @@ GPIO_ECHO = 15
 GPIO.setup(GPIO_TRIGGER, GPIO.OUT)
 GPIO.setup(GPIO_ECHO, GPIO.IN)
 
-# StartTime = time.time()
-# StopTime = time.time() 
+StartTime = time.time()
+StopTime = time.time() 
 
-# lastState = False
-# sensorerror = False
+lastState = False
+sensorerror = False
 
 def init_sensor():
     #
     GPIO.output(GPIO_TRIGGER, False)
     time.sleep(2)
 
+# def distance():
+#     global SpeedOfSound_sealevel
+#     global StartTime
+#     global StopTime
+#     global lastState
+#     # global sensorerror
+#     # set Trigger to HIGH
+#     GPIO.output(GPIO_TRIGGER, True)
+    
+#     # set Trigger after 0.01ms to LOW    
+#     time.sleep(0.00001)
+#     GPIO.output(GPIO_TRIGGER, False)
+
+#     # save StartTime
+#     while GPIO.input(GPIO_ECHO) == 0:
+#         if lastState != 0:
+#             lastState = False
+#             # sensorerror = False
+#             StartTime = time.time()
+#         else:
+#             # sensorerror = True
+#             break
+ 
+#     # save time of arrival
+#     while GPIO.input(GPIO_ECHO) == 1:
+#         if lastState != 1:            
+#             lastState = True
+#             # sensorerror = False
+#             StopTime = time.time()
+#         else:
+#             # sensorerror = True
+#             break
+ 
+#     if sensorerror == False:
+#         # time difference between start and arrival
+#         TimeElapsed = StopTime - StartTime
+#         # multiply with the sonic speed (34300 cm/s)
+#         # and divide by 2, because there and back
+        
+#         distance = (TimeElapsed) * SpeedOfSound_sealevel) / 2
+ 
+#         return distance
+#     else:
+#         return 0
+
 def distance():
-    # global lastState
-    # global sensorerror
+    global SpeedOfSound_sealevel
+    global StartTime
+    global StopTime
+    global lastState
     # set Trigger to HIGH
     GPIO.output(GPIO_TRIGGER, True)
-    
-    # set Trigger after 0.01ms to LOW    
+ 
+    # set Trigger after 0.01ms to LOW
     time.sleep(0.00001)
     GPIO.output(GPIO_TRIGGER, False)
  
-    StartTime = time.time()
-    StopTime = time.time() 
-
     # save StartTime
     while GPIO.input(GPIO_ECHO) == 0:
-        # if lastState != 0:
-            # lastState = False
-            # sensorerror = False
-            StartTime = time.time()
-        # else:
-            # sensorerror = True
-            # break
+        if lastState != 0:
+            lastState = False        
+            StartTime = time.time()        
  
     # save time of arrival
     while GPIO.input(GPIO_ECHO) == 1:
-        # if lastState != 1:            
-            # lastState = True
-            # sensorerror = False
+        if lastState != 1:
+            lastState = True
             StopTime = time.time()
-        # else:
-            # sensorerror = True
-            # break
  
-    # if sensorerror == False:
-        # time difference between start and arrival
-        TimeElapsed = StopTime - StartTime
-        # multiply with the sonic speed (34300 cm/s)
-        # and divide by 2, because there and back
-        print TimeElapsed
-        distance = (TimeElapsed * 34300) / 2
+    # time difference between start and arrival
+    TimeElapsed = StopTime - StartTime
+    # multiply with the sonic speed (34300 cm/s)
+    # and divide by 2, because there and back
+    distance = (TimeElapsed * 34300) / 2
  
-        return distance
-    # else:
-        # return 0
+    return distance
 
 def MeasureDistance():
     count = 0
