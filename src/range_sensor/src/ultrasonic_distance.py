@@ -92,6 +92,7 @@ def MeasureDistance():
             dist = distance_advanced()
             
             if dist == -1:
+                print ("Fault on sensor measurement")
                 break
             else:
                 print ("Measured Distance = %.1f cm" % dist)
