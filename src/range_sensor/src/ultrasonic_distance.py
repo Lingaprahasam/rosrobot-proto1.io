@@ -17,6 +17,7 @@ GPIO.setup(GPIO_TRIGGER, GPIO.OUT)
 GPIO.setup(GPIO_ECHO, GPIO.IN)
 
 def init_sensor():
+    GPIO.cleanup()
     GPIO.output(GPIO_TRIGGER, False)
     time.sleep(2)
 
@@ -49,7 +50,7 @@ def distance():
  
 if __name__ == '__main__':
     # Initialize sensor
-    # init_sensor()
+    init_sensor()
 
     # Measure distance every 1 second time
     try:
