@@ -88,8 +88,8 @@ def MeasureDistance():
     # Measure distance every 1 second time
     try:
         while True:
-            dist = distance_basic()
-            # dist = distance_advanced()
+            # dist = distance_basic()
+            dist = distance_advanced()
             
             if dist == -1:
                 break
