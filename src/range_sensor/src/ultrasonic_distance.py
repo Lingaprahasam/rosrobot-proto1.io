@@ -112,8 +112,13 @@ if __name__ == '__main__':
 
     # Start Measurement
     # MeasureDistance()
-    dist = distance_basic()
-    print ("Measured Distance = %.1f cm" % dist)
+    
+    # Single Measurement
+    try:
+        dist = distance_basic()
+        print ("Measured Distance = %.1f cm" % dist)
+    except KeyboardInterrupt:
+        GPIO.cleanup()
 
     # GPIO pin Clean up
     GPIO.cleanup()
