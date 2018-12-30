@@ -95,8 +95,8 @@ def MeasureDistance():
     except:
         print ("Uncontrolled Error!")
 
-    finally:
-        GPIO.cleanup()
+    # finally:
+        # GPIO.cleanup()
  
 if __name__ == '__main__':
     # Initialize sensor
