@@ -66,18 +66,29 @@ def distance():
  
         return distance
     else:
+        print "Fault in sensor Measurement"
         return 0
  
 if __name__ == '__main__':
     # Initialize sensor
     init_sensor()
-
+    count = 0
     
     # Measure distance every 1 second time
     try:
         while True:
             dist = distance()
-            print ("Measured Distance = %.1f cm" % dist)
+            if dist == 0:
+                count += 1
+            else:
+                count = 0
+            
+            if count < 5:
+                print ("Measured Distance = %.1f cm" % dist)
+            else:
+                print ("Fault on sensor measurement")
+                break
+
             time.sleep(1)
  
         # Reset by pressing CTRL + C
