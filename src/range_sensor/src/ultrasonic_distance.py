@@ -5,19 +5,21 @@ import time
 # Speed of sound at sea level 343m/s
 # SpeedOfSound_sealevel = 34300
 
-#GPIO Mode (BOARD / BCM)
-GPIO.setmode(GPIO.BOARD)
- 
 #set GPIO Pins
 GPIO_TRIGGER = 11
 GPIO_ECHO = 12
- 
-#set GPIO direction (IN / OUT)
-GPIO.setup(GPIO_TRIGGER, GPIO.OUT)
-GPIO.setup(GPIO_ECHO, GPIO.IN)
 
 def init_sensor():
     GPIO.cleanup()
+
+    #GPIO Mode (BOARD / BCM)
+    GPIO.setmode(GPIO.BOARD)
+
+    #set GPIO direction (IN / OUT)
+    GPIO.setup(GPIO_TRIGGER, GPIO.OUT)
+    GPIO.setup(GPIO_ECHO, GPIO.IN)
+    
+    #
     GPIO.output(GPIO_TRIGGER, False)
     time.sleep(2)
 
