@@ -12,14 +12,14 @@ GPIO.setmode(GPIO.BOARD)
 GPIO_TRIGGER = 11
 GPIO_ECHO = 12
 
+#set GPIO direction (IN / OUT)
+GPIO.setup(GPIO_TRIGGER, GPIO.OUT)
+GPIO.setup(GPIO_ECHO, GPIO.IN)
+
 lastState = False
 sensorerror = False
 
-def init_sensor():    
-    #set GPIO direction (IN / OUT)
-    GPIO.setup(GPIO_TRIGGER, GPIO.OUT)
-    GPIO.setup(GPIO_ECHO, GPIO.IN)
-    
+def init_sensor():
     #
     GPIO.output(GPIO_TRIGGER, False)
     time.sleep(2)
