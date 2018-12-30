@@ -25,6 +25,8 @@ def init_sensor():
     time.sleep(2)
 
 def distance():
+    global lastState
+    global sensorerror
     # set Trigger to HIGH
     GPIO.output(GPIO_TRIGGER, True)
     
