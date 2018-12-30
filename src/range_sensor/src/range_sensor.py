@@ -6,7 +6,7 @@ try:
       GPIO.setmode(GPIO.BOARD)
 
       PIN_TRIGGER = 11
-      PIN_ECHO = 13
+      PIN_ECHO = 12
 
       GPIO.setup(PIN_TRIGGER, GPIO.OUT)
       GPIO.setup(PIN_ECHO, GPIO.IN)
