@@ -2,8 +2,8 @@
 import RPi.GPIO as GPIO
 import time
 
-# Speed of sound at sea level 343m/s
-SpeedOfSound_sealevel = 34300
+# Speed of ultrasonic sound 343m/s
+SpeedOfUSound = 34300
 
 #GPIO Mode (BOARD / BCM)
 GPIO.setmode(GPIO.BOARD)
@@ -16,7 +16,7 @@ GPIO_ECHO = 12
 GPIO.setup(GPIO_TRIGGER, GPIO.OUT)
 GPIO.setup(GPIO_ECHO, GPIO.IN)
 
-lastState = False
+# lastState = False
 
 def init_sensor():
     #
@@ -44,14 +44,14 @@ def distance_basic():
         StopTime = time.time()
  
     # time difference between start and arrival
-    TimeElapsed = round((StopTime - StartTime),2)
+    TimeElapsed = StopTime - StartTime
     # multiply with the sonic speed (34300 cm/s)
     # and divide by 2, because there and back
-    distance = (TimeElapsed * 34300) / 2
+    distance = (TimeElapsed * SpeedOfUSound) / 2
  
     return distance
 
-def distance_advanced():
+# def distance_advanced():
     global SpeedOfSound_sealevel    
     global lastState
 
@@ -107,11 +107,13 @@ def MeasureDistance():
         print ("Uncontrolled Error!")
  
 if __name__ == '__main__':
-    # Initialize sensor
-    init_sensor()
+    try:
+        # Initialize sensor
+        init_sensor()
 
-    # Start Measurement
-    MeasureDistance()    
+        # Start Measurement
+        MeasureDistance()    
 
-    # GPIO pin Clean up
-    GPIO.cleanup()
+    finally:
+        # GPIO pin Clean up
+        GPIO.cleanup()
