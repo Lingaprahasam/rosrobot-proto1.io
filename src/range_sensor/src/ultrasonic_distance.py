@@ -26,11 +26,11 @@ def init_sensor():
 
 def distance_basic():
     # set Trigger to HIGH
-    GPIO.output(GPIO_TRIGGER, False)
- 
-    # set Trigger after 0.01ms to LOW
-    time.sleep(0.00001)
     GPIO.output(GPIO_TRIGGER, True)
+ 
+    # set Trigger after 10 micro seconds to LOW
+    time.sleep(0.000001)
+    GPIO.output(GPIO_TRIGGER, False)
  
     StartTime = time.time()
     StopTime = time.time()
@@ -63,7 +63,7 @@ def distance_advanced():
         GPIO.output(GPIO_TRIGGER, True)
  
         # set Trigger after 0.01ms to LOW
-        time.sleep(0.00001)
+        time.sleep(0.000001)
         GPIO.output(GPIO_TRIGGER, False)
 
         lastState = False
@@ -88,8 +88,8 @@ def MeasureDistance():
     # Measure distance every 1 second time
     try:
         while True:
-            # dist = distance_basic()
-            dist = distance_advanced()
+            dist = distance_basic()
+            #dist = distance_advanced()
             
             if dist == -1:
                 print ("Fault on sensor measurement")

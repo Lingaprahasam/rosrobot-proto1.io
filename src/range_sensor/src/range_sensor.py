@@ -21,9 +21,12 @@ try:
 
       GPIO.output(PIN_TRIGGER, GPIO.HIGH)
 
-      time.sleep(0.00001)
+      time.sleep(0.000001)
 
       GPIO.output(PIN_TRIGGER, GPIO.LOW)
+
+      pulse_start_time = time.time()
+      pulse_end_time = time.time()
 
       while GPIO.input(PIN_ECHO)==0:
             pulse_start_time = time.time()
